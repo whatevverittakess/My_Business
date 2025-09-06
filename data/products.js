@@ -29,7 +29,7 @@ export const products = [
   // Motivation Apparel
   {
     id: 1,
-    name: 'BEAST MODE Hoodie',
+    name: 'BEAST Mode Hoodie',
     category: 'motivation-apparel',
     price: 49.99,
     description: 'Premium heavyweight hoodie for the relentless',

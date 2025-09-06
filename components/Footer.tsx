@@ -23,16 +23,16 @@ export function Footer({ translations }: FooterProps) {
             
             {/* Social Media */}
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
+              <a href="https://www.facebook.com/share/g/1LfAN3sqLh/" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
+              <a href="https://www.instagram.com/whatteverittakes?igsh=dTE5d3UxNXBsZHJy" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="https://www.tiktok.com/@yourpage" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
+              <a href="https://www.tiktok.com/@what.ever.it.takes?is_from_webapp=1&sender_device=pc" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <FaTiktok className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
+              <a href="https://www.youtube.com/@whatteverittakes" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Youtube className="h-6 w-6" />
               </a>
             </div>

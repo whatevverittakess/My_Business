@@ -80,11 +80,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-
-[data-bolt-badge],
-.bolt-badge,
-.bolt-made-in {
-  display: none !important;
-  visibility: hidden !important;
-}

@@ -32,7 +32,7 @@ export function Footer({ translations }: FooterProps) {
                 <Instagram className="h-6 w-6" />
               </a>
               <a href="https://www.tiktok.com/@what.ever.it.takes?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">
-          <FaTiktok size={24} />
+          <FaTiktok className="h-6 w-6" />
               </a>
               <a href="https://www.youtube.com/@whatteverittakes" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Youtube className="h-6 w-6" />

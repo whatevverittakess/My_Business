@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Facebook, Instagram, Twitter, Youtube, Dumbbell } from 'lucide-react';
+import { FaTiktok } from "react-icons/fa";
 
 interface FooterProps {
   translations: any;
@@ -29,6 +30,9 @@ export function Footer({ translations }: FooterProps) {
               </a>
               <a href="https://www.instagram.com/whatteverittakes?igsh=dTE5d3UxNXBsZHJy" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Instagram className="h-6 w-6" />
+              </a>
+              <a href="https://www.tiktok.com/@what.ever.it.takes?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">
+          <FaTiktok size={24} />
               </a>
               <a href="https://www.youtube.com/@whatteverittakes" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Youtube className="h-6 w-6" />

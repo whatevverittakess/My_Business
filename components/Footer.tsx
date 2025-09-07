@@ -30,9 +30,6 @@ export function Footer({ translations }: FooterProps) {
               <a href="https://www.instagram.com/whatteverittakes?igsh=dTE5d3UxNXBsZHJy" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Instagram className="h-6 w-6" />
               </a>
-
-              
-              </a>
               <a href="https://www.youtube.com/@whatteverittakes" className="text-gray-400 hover:text-[#D4AF37] transition-colors">
                 <Youtube className="h-6 w-6" />
               </a>

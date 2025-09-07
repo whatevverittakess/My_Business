@@ -17,6 +17,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
 
   const navigation = [
     { name: 'Home', href: '/' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Motivation Apparel', href: '/category/motivation-apparel' },
     { name: 'Gym & Fitness', href: '/category/gym-fitness' },
     { name: 'Ebooks & Courses', href: '/category/ebooks-courses' },

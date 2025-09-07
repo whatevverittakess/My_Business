@@ -10,7 +10,9 @@ import { Footer } from '@/components/Footer';
 import { CategoryCard } from '@/components/CategoryCard';
 import { ProductCard } from '@/components/ProductCard';
 import { SearchAndFilter } from '@/components/SearchAndFilter';
+import { BlogCard } from '@/components/BlogCard';
 import { categories, products, translations } from '@/data/products';
+import { blogPosts } from '@/data/blogs';
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState('en');
@@ -20,6 +22,7 @@ export default function Home() {
   const t = translations[currentLang as keyof typeof translations];
   
   const featuredProducts = products.filter(product => product.featured);
+  const featuredBlogs = blogPosts.filter(post => post.featured).slice(0, 3);
   
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
@@ -168,6 +171,55 @@ export default function Home() {
                   <CategoryCard category={category} viewAllText={t.viewAll} />
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Featured Blog Posts */}
+      {!searchTerm && !selectedCategory && (
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Latest Insights
+              </h2>
+              <div className="w-24 h-1 bg-[#D4AF37] mx-auto mb-4" />
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Fuel your journey with powerful insights and motivational content
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {featuredBlogs.map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <BlogCard post={post} readMoreText="Read More" />
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
+                asChild
+              >
+                <Link href="/blog">
+                  View All Posts
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

@@ -45,6 +45,9 @@ export function Footer({ translations }: FooterProps) {
               <Link href="/category/motivation-apparel" className="block text-gray-400 hover:text-[#D4AF37] transition-colors">
                 Motivation Apparel
               </Link>
+              <Link href="/blog" className="block text-gray-400 hover:text-[#D4AF37] transition-colors">
+                Blog
+              </Link>
               <Link href="/category/gym-fitness" className="block text-gray-400 hover:text-[#D4AF37] transition-colors">
                 Gym & Fitness
               </Link>

@@ -26,20 +26,26 @@ export function BlogCard({ post, readMoreText }: BlogCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      whileHover={{ y: -5 }}
-      className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 group"
     >
       <Link href={`/blog/${post.slug}`}>
-        <div className="relative overflow-hidden group">
-          <img
+        <div className="relative overflow-hidden">
+          <motion.img
             src={post.image}
             alt={post.title}
-            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-48 object-cover"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
           />
           <div className="absolute top-4 left-4">
-            <span className="bg-[#D4AF37] text-black px-3 py-1 rounded-full text-sm font-semibold">
+            <motion.span
+              className="bg-[#D4AF37] text-black px-3 py-1 rounded-full text-sm font-semibold shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               {post.category}
-            </span>
+            </motion.span>
           </div>
         </div>
         
@@ -51,17 +57,22 @@ export function BlogCard({ post, readMoreText }: BlogCardProps) {
             <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
           </div>
           
-          <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-[#D4AF37] transition-colors">
+          <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#D4AF37] transition-colors duration-300">
             {post.title}
           </h3>
-          
+
           <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
             {post.excerpt}
           </p>
-          
-          <div className="flex items-center text-[#D4AF37] font-semibold hover:text-[#B8941F] transition-colors">
+
+          <div className="flex items-center text-[#D4AF37] font-semibold group-hover:text-[#B8941F] transition-colors duration-300">
             {readMoreText}
-            <ArrowRight className="h-4 w-4 ml-2" />
+            <motion.div
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </motion.div>
           </div>
         </div>
       </Link>

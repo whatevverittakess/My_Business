@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Dumbbell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from './LanguageSelector';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeaderProps {
   currentLang: string;
@@ -14,6 +15,15 @@ interface HeaderProps {
 
 export function Header({ currentLang, onLanguageChange, translations }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -25,7 +35,13 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
   ];
 
   return (
-    <header className="bg-black text-white sticky top-0 z-50 shadow-lg">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`bg-black text-white sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'shadow-xl backdrop-blur-sm bg-black/95' : 'shadow-lg'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -36,14 +52,21 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <Link
+            {navigation.map((item, index) => (
+              <motion.div
                 key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-[#D4AF37] transition-colors duration-200 font-medium"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
-                {item.name}
-              </Link>
+                <Link
+                  href={item.href}
+                  className="text-gray-300 hover:text-[#D4AF37] transition-all duration-300 font-medium relative group"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
@@ -63,23 +86,37 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-800">
-            <div className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-300 hover:text-[#D4AF37] transition-colors duration-200 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="md:hidden overflow-hidden border-t border-gray-800"
+            >
+              <div className="flex flex-col space-y-4 py-4">
+                {navigation.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="text-gray-300 hover:text-[#D4AF37] transition-colors duration-300 font-medium block"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 }

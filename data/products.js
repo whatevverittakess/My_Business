@@ -31,7 +31,7 @@ export const products = [
     id: 1,
     name: 'BEAST Mode Hoodie',
     category: 'motivation-apparel',
-    price: 49.99,
+    price: 49,
     description: 'Premium heavyweight hoodie for the relentless',
     image: 'https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg?auto=compress&cs=tinysrgb&w=600',
     affiliateLink: 'https://amazon.com/beast-mode-hoodie',
